@@ -6,9 +6,10 @@ Pod::Spec.new do |s|
     s.license      = 'MIT'
     s.authors      = {'CoderKo1o' => '499491531@qq.com'}
     s.platform     = :ios, '7.0'
-    s.dependency "SDWebImage/GIF"
+    s.dependency "SDWebImage"
     s.dependency "MBProgressHUD"
     s.dependency "DACircularProgress"
+    s.dependency "FLAnimatedImage"
     s.source       = {:git => 'https://github.com/iphone5solo/PYPhotoBrowser.git', :tag => s.version}
     s.source_files = 'PYPhotoBrowser/**/*.{h,m}'
     s.resource     = 'PYPhotoBrowser/PYPhotosView.bundle'
