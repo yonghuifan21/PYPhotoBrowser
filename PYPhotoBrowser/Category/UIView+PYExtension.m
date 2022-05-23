@@ -11,7 +11,9 @@
 - (void)setPy_x:(CGFloat)py_x
 {
     CGRect frame = self.frame;
-    frame.origin.x = py_x;
+    if(!isnan(py_x)){
+        frame.origin.x = py_x;
+    }
     self.frame = frame;
 }
 
@@ -23,7 +25,9 @@
 - (void)setPy_centerX:(CGFloat)py_centerX
 {
     CGPoint center = self.center;
-    center.x = py_centerX;
+    if(!isnan(py_centerX)){
+        center.x = py_centerX;
+    }
     self.center = center;
 }
 
@@ -35,7 +39,9 @@
 -(void)setPy_centerY:(CGFloat)py_centerY
 {
     CGPoint center = self.center;
-    center.y = py_centerY;
+    if(!isnan(py_centerY)){
+        center.y = py_centerY;
+    }
     self.center = center;
 }
 
@@ -47,7 +53,9 @@
 - (void)setPy_y:(CGFloat)py_y
 {
     CGRect frame = self.frame;
-    frame.origin.y = py_y;
+    if(!isnan(py_y)){
+        frame.origin.y = py_y;
+    }
     self.frame = frame;
 }
 
@@ -59,7 +67,9 @@
 - (void)setPy_size:(CGSize)py_size
 {
     CGRect frame = self.frame;
-    frame.size = py_size;
+    if(!isnan(py_size.width) && !isnan(py_size.height)){
+        frame.size = py_size;
+    }
     self.frame = frame;
 
 }
@@ -72,7 +82,9 @@
 - (void)setPy_height:(CGFloat)py_height
 {
     CGRect frame = self.frame;
-    frame.size.height = py_height;
+    if(!isnan(py_height)){
+        frame.size.height = py_height;
+    }
     self.frame = frame;
 }
 
@@ -84,7 +96,9 @@
 - (void)setPy_width:(CGFloat)py_width
 {
     CGRect frame = self.frame;
-    frame.size.width = py_width;
+    if(!isnan(py_width)){
+        frame.size.width = py_width;
+    }
     self.frame = frame;
 
 }
@@ -96,7 +110,9 @@
 - (void)setPy_origin:(CGPoint)py_origin
 {
     CGRect frame = self.frame;
-    frame.origin = py_origin;
+    if(!isnan(py_origin.x) && !isnan(py_origin.y)){
+        frame.origin = py_origin;
+    }
     self.frame = frame;
 }
 

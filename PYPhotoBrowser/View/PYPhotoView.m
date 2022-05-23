@@ -402,10 +402,16 @@ static CGSize originalSize;
 
         // 复位
         [UIView animateWithDuration:0.25  delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            self.transform = CGAffineTransformScale(self.transform, scale, scale);
+            //不能是nan类型数
+            if(!isnan(scale)){
+                self.transform = CGAffineTransformScale(self.transform, scale, scale);
+            }
         } completion:^(BOOL finished) {
             // 记录放大的倍数
-            self.scale = self.py_width / self.photo.verticalWidth;
+            CGFloat beforeScale =  self.py_width / self.photo.verticalWidth;
+            if(!isnan(beforeScale)){
+                self.scale = beforeScale;
+            }
         }];
     }
 }
@@ -549,7 +555,9 @@ static CGSize originalSize;
             // 允许手势
             [self addGestureRecognizers];
             // 记录原始大小
-            self.photo.originalSize = CGSizeMake(self.py_width, self.py_width * image.size.height / image.size.width);
+            CGFloat originHeight = self.py_width * image.size.height / image.size.width;
+            originHeight = isnan(originHeight) ? self.py_width : originHeight;
+            self.photo.originalSize = CGSizeMake(self.py_width, originHeight);
             // 记录未旋转的宽度或者旋转完成时的宽度
             self.photo.verticalWidth = self.photo.originalSize.width;
 
