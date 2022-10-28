@@ -58,17 +58,23 @@ NSString *const PYPhotoCellReuseIdentifier = @"PYPhotoViewCell";
     
     // 取出图片大小
     CGSize imageSize = self.photoView.image.size;
-    CGFloat width;
-    CGFloat height;
+    CGFloat width = 0.0;
+    CGFloat height = 0.0;
     if (self.photo.originalSize.width > self.photo.originalSize.height * 2) { // （原始图片）宽大于高的两倍
         height = PYScreenH;
-        width = height * self.photo.originalSize.height / self.photo.originalSize.width;
+        
+        if(!isnan(self.photo.originalSize.width)){
+            width = height * self.photo.originalSize.height / self.photo.originalSize.width;
+        }
+            
     } else { // （原始图片）高大于宽
-        height = PYScreenW * self.photo.originalSize.width / self.photo.originalSize.height > PYScreenH ? PYScreenH : PYScreenW * self.photo.originalSize.width / self.photo.originalSize.height;
+        if(!isnan(self.photo.originalSize.height)){
+            height = PYScreenW * self.photo.originalSize.width / self.photo.originalSize.height > PYScreenH ? PYScreenH : PYScreenW * self.photo.originalSize.width / self.photo.originalSize.height;
+        }
         width = PYScreenW;
     }
     self.photoView.py_size = CGSizeMake(self.py_width, self.py_width * imageSize.height / imageSize.width);
-    if (self.py_width > self.py_height) { // 横屏
+    if (self.py_width > self.py_height && height > 0 && width > 0) { // 横屏
         self.photoView.py_size = CGSizeMake(height, width);
     }
     
